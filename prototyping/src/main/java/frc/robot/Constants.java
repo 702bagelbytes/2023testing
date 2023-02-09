@@ -53,7 +53,7 @@ public final class Constants {
   }
 
   public static class ArmConstants {
-    public static final int kRaiseSpark = 4;
+    public static final int kRaiseSpark = 3;
   }
 
   public static class GRABOTRONConstants {
