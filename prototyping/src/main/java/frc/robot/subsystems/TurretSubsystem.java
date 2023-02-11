@@ -13,7 +13,7 @@ import frc.robot.Constants.TurretConstants;
 
 public class TurretSubsystem extends SubsystemBase {
     private final WPI_TalonFX rotate = new WPI_TalonFX(TurretConstants.kTurretTalonFX);
-    private SlewRateLimiter rateLimiter = new SlewRateLimiter(0.5);
+    private SlewRateLimiter rateLimiter = new SlewRateLimiter(0.75);
 
     public TurretSubsystem() {
         rotate.setNeutralMode(NeutralMode.Brake);

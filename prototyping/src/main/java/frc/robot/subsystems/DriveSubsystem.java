@@ -20,11 +20,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
 
 public class DriveSubsystem extends SubsystemBase {
-    private final WPI_TalonSRX talonFL = new WPI_TalonSRX(DriveConstants.TALON_FL_ID);
-    private final CANSparkMax sparkML = new CANSparkMax(DriveConstants.SPARK_ML_ID, MotorType.kBrushed);
-    private final RelativeEncoder leftEncoder = sparkML.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature, 8192);
+    private final CANSparkMax sparkFL = new CANSparkMax(DriveConstants.SPARK_FL_ID, MotorType.kBrushed);
+    private final RelativeEncoder leftEncoder = sparkFL.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature, 8192);
+    private final WPI_TalonSRX talonML = new WPI_TalonSRX(DriveConstants.TALON_ML_ID);
     private final WPI_TalonSRX talonBL = new WPI_TalonSRX(DriveConstants.TALON_BL_ID);
-    private final MotorControllerGroup leftGroup = new MotorControllerGroup(talonFL, sparkML, talonBL);
+    private final MotorControllerGroup leftGroup = new MotorControllerGroup(sparkFL, talonML, talonBL);
 
     private final CANSparkMax sparkFR = new CANSparkMax(DriveConstants.SPARK_FR_ID, MotorType.kBrushed);
     private final RelativeEncoder rightEncoder = sparkFR.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature, 8192);
@@ -35,12 +35,12 @@ public class DriveSubsystem extends SubsystemBase {
     private final DifferentialDrive drive = new DifferentialDrive(leftGroup, rightGroup);
 
     public DriveSubsystem() {
-        sparkML.setInverted(true);
-        sparkFR.setInverted(true);
+        // sparkFL.setInverted(true);
+        // sparkFR.setInverted(true);
         rightGroup.setInverted(true);
 
-        talonFL.setNeutralMode(NeutralMode.Brake);
-        sparkML.setIdleMode(IdleMode.kBrake);
+        sparkFL.setIdleMode(IdleMode.kBrake);
+        talonML.setNeutralMode(NeutralMode.Brake);
         talonBL.setNeutralMode(NeutralMode.Brake);
         sparkFR.setIdleMode(IdleMode.kBrake);
         talonMR.setNeutralMode(NeutralMode.Brake);
